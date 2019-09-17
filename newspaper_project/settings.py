@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'crispy_forms',
     'articles.apps.ArticlesConfig',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'newspaper_project.urls'
@@ -136,3 +138,8 @@ EMAIL_HOST_USER='apikey'
 EMAIL_HOST_PASSWORD='sendgrid_password'
 EMAIL_POST=587
 EMAIL_USE_TLS=True
+
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_URL='/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressdManifestStaticFileStorage'
